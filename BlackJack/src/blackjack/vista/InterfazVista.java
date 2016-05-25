@@ -17,11 +17,17 @@ public interface InterfazVista {
 
     public abstract boolean iniciarPartida();
 
-    public abstract boolean plantarse();
+    public abstract void plantarse();
 
     public abstract void salir();
 
     public abstract void pedirCarta();
+
+    public abstract String pedirNombre();
+
+    public abstract Float pedirBote();
+
+    public abstract Float pedirApuesta();
 
     public void setControlador(BlackJackControlador objecto);
 

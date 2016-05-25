@@ -18,14 +18,16 @@ import javax.swing.*;
  */
 public class VistaSwing extends JFrame implements InterfazVista {
 
-    private JLabel jlDineroTotal, jlDineroTotal2, jlDineroApostado, jlDineroApostado2, jlPuntos, jlPuntos2;
-    private JButton jbIniciarPartida, jbSalir, jbPedirCarta, jbPlantarse;
+    private JLabel jlDineroTotal, jlDineroTotal2, jlDineroApostado, jlDineroApostado2, jlPuntos, jlPuntos2, jlJugador, jlJugador1;
+    private JButton jbIniciarPartida, jbSalir, jbPedirCarta, jbPlantarse, jbJugar;
     private JPanel jpIzda, jpArriba;
 
     public VistaSwing() throws HeadlessException {
+        jlJugador = new JLabel("Nombre jugador: ");
+        jlJugador1 = new JLabel("");
         jlDineroTotal = new JLabel("Dinero total: ");
         jlDineroTotal2 = new JLabel("");
-        jlDineroApostado = new JLabel("Dinero apostado");
+        jlDineroApostado = new JLabel("Dinero apostado: ");
         jlDineroApostado2 = new JLabel("");
         jlPuntos = new JLabel("Puntos");
         jlPuntos2 = new JLabel("");
@@ -34,11 +36,14 @@ public class VistaSwing extends JFrame implements InterfazVista {
         jbPedirCarta = new JButton("Pedir Carta");
         jbPlantarse = new JButton("Plantarse");
         jbSalir = new JButton("Salir");
+        jbJugar = new JButton("Jugar");
 
         jpIzda = new JPanel();
         jpArriba = new JPanel();
 
-        jpIzda.setLayout(new GridLayout(3, 3));
+        jpIzda.setLayout(new BoxLayout(jpIzda, BoxLayout.Y_AXIS));
+        jpIzda.add(jlJugador);
+        jpIzda.add(jlJugador1);
         jpIzda.add(jlDineroTotal);
         jpIzda.add(jlDineroTotal2);
         jpIzda.add(jlDineroApostado);
@@ -49,18 +54,22 @@ public class VistaSwing extends JFrame implements InterfazVista {
         jpArriba.setLayout(new FlowLayout(FlowLayout.RIGHT));
         jpArriba.add(jbPedirCarta);
         jpArriba.add(jbPlantarse);
-        
+
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(jpIzda, BorderLayout.WEST);
         getContentPane().add(jpArriba, BorderLayout.NORTH);
-       
+
+        pack();
         setVisible(true);//hacer visible la ventana
         setLocationRelativeTo(null);//para que la ventana salga centrada
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);//para terminar proceso al cerrar ventana
 
     }
-    
-   
+
+    public static void main(String[] args) {
+        VistaSwing v = new VistaSwing();
+    }
+
     @Override
 
     public boolean continuar() {
@@ -73,26 +82,51 @@ public class VistaSwing extends JFrame implements InterfazVista {
     }
 
     @Override
-    public boolean plantarse() {
-     return true;
+    public String pedirNombre() {
+        String nombre;
+        return nombre = JOptionPane.showInputDialog(this, "¿Cómo te llamas?");
+    }
+
+    @Override
+    public Float pedirBote() {
+        float bote = 0;
+        String saldo;
+        saldo = JOptionPane.showInputDialog(this, "¿Cuánto dinero tienes?");
+        return bote = Float.parseFloat(saldo);
+    }
+
+    @Override
+    public void plantarse() {
+
+    }
+
+    @Override
+    public Float pedirApuesta() {
+        float apuesta1 = 0;
+        String apuesta;
+        apuesta = (JOptionPane.showInputDialog(this, "¿Cuánto quieres apostar?"));
+        jlDineroApostado2.setText(apuesta);
+        return apuesta1 = Float.parseFloat(apuesta);
     }
 
     @Override
     public void salir() {
-     
+
     }
 
     @Override
     public void pedirCarta() {
-     
+
     }
 
     @Override
     public void setControlador(BlackJackControlador objecto) {
-       jbPedirCarta.setActionCommand("PedirCarta");
-       jbPedirCarta.addActionListener(objecto);
-       jbPlantarse.setActionCommand("Plantarse");
-       jbPlantarse.addActionListener(objecto);
+        jbPedirCarta.setActionCommand("PedirCarta");
+        jbPedirCarta.addActionListener(objecto);
+        jbPlantarse.setActionCommand("Plantarse");
+        jbPlantarse.addActionListener(objecto);
+        jbJugar.setActionCommand("Jugar");
+        jbJugar.addActionListener(objecto);
     }
 
 }

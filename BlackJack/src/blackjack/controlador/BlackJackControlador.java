@@ -12,12 +12,14 @@ import blackjack.modelo.Mano;
 import blackjack.vista.InterfazVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author VESPERTINO
  */
-public class BlackJackControlador implements ActionListener{
+public class BlackJackControlador implements ActionListener {
+
     private InterfazVista vista;
     private Jugador jugador;
     private Crupier crupier;
@@ -30,11 +32,20 @@ public class BlackJackControlador implements ActionListener{
         this.crupier = crupier;
         this.baraja = baraja;
         this.mano = mano;
+        vista.setControlador(this);
     }
-        
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (e.getActionCommand() == "Jugar") {
+            jugador.setNombre(vista.pedirNombre());
+            jugador.setSaldo(vista.pedirBote());
+            jugador.setApuesta(vista.pedirApuesta());
+        } else if (e.getActionCommand() == "Plantarse") {
+            vista.plantarse();
+        } else if (e.getActionCommand() == "SeguirJugando") {
+            jugador.setApuesta(vista.pedirApuesta());
+        }
     }
-    
+
 }
