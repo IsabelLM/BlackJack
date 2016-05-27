@@ -13,10 +13,10 @@ import java.util.Scanner;
  * @author VESPERTINO
  */
 public class VistaConsola implements InterfazVista {
+
     private String nombreJugador;
     public float boteJugador, apuesta;
-    
-    
+
     @Override
     public boolean continuar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -24,11 +24,6 @@ public class VistaConsola implements InterfazVista {
 
     @Override
     public boolean iniciarPartida() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean plantarse() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -43,15 +38,31 @@ public class VistaConsola implements InterfazVista {
     }
 
     @Override
-    public void pedirNombre() {
+    public String pedirNombre() {
+        String nombre = null;
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Cómo te llamas?");
-        
+        return nombre;
     }
 
     @Override
     public void setControlador(BlackJackControlador objecto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    @Override
+    public void plantarse() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Float pedirBote() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Float pedirApuesta() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
